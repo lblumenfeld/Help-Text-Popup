@@ -21,4 +21,4 @@ HTML Text - The actual help text is any valid HTML that can be rendered.
 
 Here is a sample the help text box displayed over a sample app from the Qlik site.
 
-![](Help-Text-Popup.png)
+![](./Help-Text-Popup.png)
