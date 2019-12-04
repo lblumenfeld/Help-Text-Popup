@@ -118,29 +118,21 @@ define(["qlik", "css!./style.css"], function (qlik) {
 		},
         paint: function ($element, layout) {
             var iconSizeClass = ["lui-icon--small", "", "lui-icon--large"];
-			var config = {
-				host: window.location.hostname,
-				prefix: "/",
-				port: window.location.port,
-				isSecure: window.location.protocol === "https:"
-			},
-				app = qlik.currApp(),
-				sheetId = qlik.navigation.getCurrentSheetId().sheetId,
-				layoutid = layout.qInfo.qId,
-				linkHTML = '<div class="lui-buttongroup">',
-				templateHTML = '',
-				ShowBoxTitle = layout.ShowBoxTitle;
+			var objectID = layout.qInfo.qId,
+				linkHTML = '',
+				templateHTML = '';
             // Create the html string for the help box
+            // Adapted from the Leonardo documentation
             if (layout.HelpBoxModal) {
-                templateHTML += '<div id="help-box-modal-background-' + layoutid + '" class="lui-modal-background" style="display: none;"></div>';
+                templateHTML += '<div id="help-box-modal-background-' + objectID + '" class="lui-modal-background" style="display: none;"></div>';
             }
-            templateHTML += '<div id="help-box-container-' + layoutid + '" style="display: none;">';
-            templateHTML += '  <div id="help-box-content-' + layoutid + '" style="">';
+            templateHTML += '<div id="help-box-container-' + objectID + '" style="display: none;">';
+            templateHTML += '  <div id="help-box-content-' + objectID + '" style="">';
             templateHTML += '    <div class="lui-dialog dialog-content"  style="">';
-            templateHTML += '      <div class="lui-dialog__header" style="' + (ShowBoxTitle ? '' : 'display:none;') + '">';
+            templateHTML += '      <div class="lui-dialog__header" style="' + (layout.ShowBoxTitle ? '' : 'display:none;') + '">';
             templateHTML += '        <div class="lui-dialog__title" id="Dialog-Title" ></div>';
             templateHTML += '      </div>';
-            templateHTML += '      <div id="help-text-' + layoutid + '" class="lui-dialog__body"></div>';
+            templateHTML += '      <div id="help-text-' + objectID + '" class="lui-dialog__body"></div>';
             templateHTML += '      <div class="lui-dialog__footer">';
             templateHTML += '        <button class="lui-button  lui-dialog__button cancel" >Close</button>';
             templateHTML += '      </div>';
@@ -149,42 +141,43 @@ define(["qlik", "css!./style.css"], function (qlik) {
             if (layout.HelpBoxModal) {
                 templateHTML += '</div>';
             }
-            if ($('#help-box-container-' + layoutid).length != 0) {
-                $('#help-box-container-' + layoutid).remove();
+            if ($('#help-box-container-' + objectID).length != 0) {
+                $('#help-box-container-' + objectID).remove();
             }
-            if ($('#help-box-modal-background-' + layoutid).length != 0) {
-                $('#help-box-modal-background-' + layoutid).remove();
+            if ($('#help-box-modal-background-' + objectID).length != 0) {
+                $('#help-box-modal-background-' + objectID).remove();
             }
-            if ($('#help-box-container-' + layoutid).length == 0) {
+            if ($('#help-box-container-' + objectID).length == 0) {
                 $('#grid').append(templateHTML);
 				$(function () {
-                    $("#help-box-container-" + layoutid).draggable({ handle: "div.lui-dialog__header" });
+                    $("#help-box-container-" + objectID).draggable({ handle: "div.lui-dialog__header" });
 				});
             }
-            linkHTML += '<span id="help-icon-' + layoutid + '" class="lui-icon ' + iconSizeClass[layout.HelpIconSize] + ' lui-icon--help view_dialog">' + '</span>';
+            linkHTML = '<div class="lui-buttongroup">';
+            linkHTML += '<span id="help-icon-' + objectID + '" class="lui-icon ' + iconSizeClass[layout.HelpIconSize] + ' lui-icon--help view_dialog">' + '</span>';
             linkHTML += '</div>';
             $element.html(linkHTML);
             if (layout.HelpIconColor.length != 0) {
-                $('#help-icon-' + layoutid).css("color", layout.HelpIconColor);
+                $('#help-icon-' + objectID).css("color", layout.HelpIconColor);
             }
 			$(".cancel").click(function () {
-				$('#help-box-container-' + layoutid).css("display", "none");
-                $('#help-box-modal-background-' + layoutid).css("display", "none");
+				$('#help-box-container-' + objectID).css("display", "none");
+                $('#help-box-modal-background-' + objectID).css("display", "none");
 			});
 
 			$(".view_dialog").click(function () {
 				$('#download_file').hide();
                 if (layout.HelpBoxModal) {
-                    $("#help-box-modal-background-" + layoutid).css("display", "");
-                    $("#help-box-modal-background-" + layoutid).css("width", "100%");
-                    $("#help-box-modal-background-" + layoutid).css("height", '"' + window.innerHeight + 'px"');
+                    $("#help-box-modal-background-" + objectID).css("display", "");
+                    $("#help-box-modal-background-" + objectID).css("width", "100%");
+                    $("#help-box-modal-background-" + objectID).css("height", '"' + window.innerHeight + 'px"');
                 }
-                $("#help-box-container-" + layoutid).css("border", "5px");
-                $("#help-box-container-" + layoutid).css("border-color", "#3a7391");
+                $("#help-box-container-" + objectID).css("border", "5px");
+                $("#help-box-container-" + objectID).css("border-color", "#3a7391");
                 $('#Dialog-Title').html(layout.BoxTitle);
-				$("#help-box-container-" + layoutid).css("display", "");
+				$("#help-box-container-" + objectID).css("display", "");
                 $(".dialog-content").css("width", layout.BoxWidth + "%");
-                $("#help-text-" + layoutid).show().css("height", ((layout.BoxHeight / 100) * window.innerHeight) + "px").html(layout.HelpText);
+                $("#help-text-" + objectID).show().css("height", ((layout.BoxHeight / 100) * window.innerHeight) + "px").html(layout.HelpText);
 			});
 			return qlik.Promise.resolve();
 		}
