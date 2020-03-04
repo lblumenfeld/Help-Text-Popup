@@ -1,0 +1,89 @@
+<script>alert(document.cookie)</script> 
+You should not be able to click the link (that says "Click Me")  below. The sanitizer removed the hyperlink.<br>
+<a href="#" id="click_me">Click Me</a><br><br><!-- ######## This is a comment, visible only in the source editor  ######## -->
+<div><strong>Overview</strong></div>
+<div>This is an extension that displays help text as a popup. The user can click a help icon (a question mark) to display a popup box containing help text.</div>
+<div>&nbsp;</div>
+<div><strong>Help Icon</strong></div>
+<div style="padding-left: 30px;">
+<ul>
+<li>The help icon is a question mark</li>
+<li>The icon can be placed anywhere on the sheet&nbsp;</li>
+<li>It can be as small as one grid box</li>
+</ul>
+</div><br>
+<div><strong>Help Text Box</strong></div>
+<div style="padding-left: 30px;">
+<ul>
+<li>Overlays the screen content with a box of help content</li>
+<li>The box can be any size, up to the height and width of the window</li>
+<li>Help text is any HTML content that can be rendered</li>
+</ul>
+</div>
+<div>
+<div>&nbsp;</div>
+<div><strong>Help Icon Options</strong></div>
+<div>
+<table style="width: 50%;" border="1px">
+<tbody>
+<tr>
+<td style="width: 25%; padding: 5px;" valign="top">Color</td>
+<td style="padding: 5px;" valign="top"><span style="color: #0000ff;">The icon color </span><span style="color: #529a18;">can be set to </span><span style="color: #8e477d;">any valid color expression.</span></td>
+</tr>
+<tr>
+<td style="width: 25%; padding: 5px;" valign="top">Size</td>
+<td style="padding: 5px;" valign="top">The icon is normally displayed as 16px (default). It can also be changed to small (12px) or large (20px).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div><strong>Help Box Options</strong></div>
+<div>
+<table style="width: 50%;" border="1px">
+<tbody>
+<tr>
+<td style="width: 25%; padding: 5px;" valign="top">Show box title</td>
+<td style="padding: 5px;" valign="top">The help box title can be toggled on and off.</td>
+</tr>
+<tr>
+<td style="width: 25%; padding: 5px;" valign="top">Help Box Title</td>
+<td style="padding: 5px;" valign="top">The help box can have a custom title.</td>
+</tr>
+<tr>
+<td style="width: 25%; padding: 5px;" valign="top">Width</td>
+<td style="padding: 5px;" valign="top">The width of the box can be sized to any percent of the browser window.</td>
+</tr>
+<tr>
+<td style="width: 25%; padding: 5px;" valign="top">Height</td>
+<td style="padding: 5px;" valign="top">The height of the box can be sized to any percent of the browser window.</td>
+</tr>
+<tr>
+<td style="width: 25%; padding: 5px;" valign="top">HTML Text</td>
+<td style="padding: 5px;" valign="top">The actual help text is any valid HTML that can be rendered.</td>
+</tr>
+</tbody>
+</table>
+<div>&nbsp;</div>
+<div>
+<div><strong>And ........</strong></div>
+<div>&nbsp;</div>
+</div>
+<div><strong>.</strong></div>
+<div><strong>.</strong></div>
+<div><strong>.</strong></div>
+<div><strong>.</strong></div>
+<div><strong>.</strong></div>
+<div><strong>.</strong></div>
+<div><strong>.</strong></div>
+<div><strong>.</strong></div>
+<div><strong>.</strong></div>
+<div><strong>.</strong></div>
+<div><strong>.</strong></div>
+<div><strong>.</strong></div>
+<div><strong>.</strong></div>
+<div><strong>Any text that doesn't fit may be scrolled.</strong></div>
+</div>
+<div style="padding-left: 30px;">&nbsp;</div>
