@@ -1,4 +1,5 @@
 HelpTextPopup.qext;
 HelpTextPopup.js;
-getMasterItems.js;
+sanitize-html.config.js
+sanitize-html.min.js
 style.css;

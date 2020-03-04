@@ -1,4 +1,5 @@
-define(["qlik", "css!./style.css"], function (qlik) {
+define(["qlik", "./sanitize-html.min", "./sanitize-html.config", "css!./style.css"], function (qlik, sanitizeHtml, sanitizeConfig) {
+
 	return {
 		definition: {
 			type: "items",
@@ -121,6 +122,29 @@ define(["qlik", "css!./style.css"], function (qlik) {
 			var objectID = layout.qInfo.qId,
 				linkHTML = '',
 				templateHTML = '';
+
+
+            var sanitizeOptions = {
+                allowedTags: ['h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul', 'ol',
+                    'nl', 'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'hr', 'br', 'div',
+                    'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td', 'pre', 'iframe'],
+                allowedAttributes: {
+                    //                    a: [ 'href', 'name', 'target' ],
+                    a: ['name', 'target'],
+                    // We don't currently allow img itself by default, but this
+                    // would make sense if we did. You could add srcset here,
+                    // and if you do the URL is checked for safety
+                    img: ['src']
+                },
+                // Lots of these won't come up by default because we don't allow them
+                selfClosing: ['img', 'br', 'hr', 'area', 'base', 'basefont', 'input', 'link', 'meta'],
+                // URL schemes we permit
+                allowedSchemes: ['http', 'https', 'ftp', 'mailto'],
+                allowedSchemesByTag: {},
+                allowedSchemesAppliedToAttributes: ['href', 'src', 'cite'],
+                allowProtocolRelative: true
+            };
+
             // Create the html string for the help box
             // Adapted from the Leonardo documentation
             if (layout.HelpBoxModal) {
@@ -177,7 +201,7 @@ define(["qlik", "css!./style.css"], function (qlik) {
                 $('#Dialog-Title').html(layout.BoxTitle);
 				$("#help-box-container-" + objectID).css("display", "");
                 $(".dialog-content").css("width", layout.BoxWidth + "%");
-                $("#help-text-" + objectID).show().css("height", ((layout.BoxHeight / 100) * window.innerHeight) + "px").html(layout.HelpText);
+                $("#help-text-" + objectID).show().css("height", ((layout.BoxHeight / 100) * window.innerHeight) + "px").html(sanitizeHtml(layout.HelpText, sanitizeConfig.getConfig()));
 			});
 			return qlik.Promise.resolve();
 		}

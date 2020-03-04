@@ -4,9 +4,9 @@
  
 The Help Icon is displayed as question mark. It can be placed anywhere on the sheet and can be as small as one grid box.
 
-The Help Text Box is a popup box that overlays a portion of the screen with HTML help text content. The box can be rendered as modal or non-modal, and can be any size, up to the height and width of the window. The help text is any HTML content that can be rendered.",
+The Help Text Box is a popup box that overlays a portion of the screen with HTML help text content. The box can be rendered as modal or non-modal, and can be any size, up to the height and width of the window. The help text is any HTML content that can be rendered. This version adds configurable HTML sanitization in order to prevent cross-site scripting and other vulnerabilities.",
 	"type": "visualization",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"icon": "extension",
 	"author": "Leslie Blumenfeld",
 	"homepage": "",
